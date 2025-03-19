@@ -1,94 +1,71 @@
-Employee Tracker
-Description
+# Employee Tracker
+
+## Description
+
 Employee Tracker is a command-line application that allows business owners to view and manage departments, roles, and employees in their company. This Content Management System (CMS) provides an intuitive interface for organizing and planning business operations through a PostgreSQL database.
-Table of Contents
 
-Installation
-Usage
-Features
-Database Schema
-Demo
-Technologies Used
-License
+## Table of Contents
 
-Installation
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Database Schema](#database-schema)
+- [Demo](#demo)
+- [Technologies Used](#technologies-used)
+- [License](#license)
 
-Clone the repository to your local machine
-Navigate to the project directory
-Install the required dependencies:
-bashCopynpm install
+## Installation
 
-Create a PostgreSQL database
-Run the schema and seed files:
-bashCopypsql -U your_username -d your_database -f db/schema.sql
-psql -U your_username -d your_database -f db/seeds.sql
+1. Clone the repository to your local machine
+2. Navigate to the project directory
+3. Install the required dependencies:
+   ```bash
+   npm install
+   ```
+4. Create a PostgreSQL database
+5. Run the schema and seed files:
+   ```bash
+   psql -U your_username -d your_database -f db/schema.sql
+   psql -U your_username -d your_database -f db/seeds.sql
+   ```
+6. Configure the database connection in the connection.js file
 
-Configure the database connection in the connection.js file
+## Usage
 
-Usage
 To start the application, run:
-bashCopynpm start
+```bash
+npm start
+```
+
 Follow the command-line prompts to:
+- View all departments, roles, or employees
+- Add departments, roles, or employees
+- Update employee roles
 
-View all departments, roles, or employees
-Add departments, roles, or employees
-Update employee roles
+## Features
 
-Features
 The Employee Tracker allows users to:
 
-View all departments: Display a formatted table showing department names and IDs
-View all roles: Display job titles, role IDs, departments, and salaries
-View all employees: Display employee IDs, names, job titles, departments, salaries, and managers
-Add a department: Add a new department to the database
-Add a role: Add a new role with title, salary, and department
-Add an employee: Add a new employee with name, role, and manager
-Update an employee role: Change an employee's role in the company
+- **View all departments**: Display a formatted table showing department names and IDs
+- **View all roles**: Display job titles, role IDs, departments, and salaries
+- **View all employees**: Display employee IDs, names, job titles, departments, salaries, and managers
+- **Add a department**: Add a new department to the database
+- **Add a role**: Add a new role with title, salary, and department
+- **Add an employee**: Add a new employee with name, role, and manager
+- **Update an employee role**: Change an employee's role in the company
 
-Bonus Features
+## Walkthrought Video
 
-Update employee managers
-View employees by manager
-View employees by department
-Delete departments, roles, and employees
-View total utilized budget by department (combined salaries)
+[View the demo video](https://app.screencastify.com/v3/watch/JFfmE6lUONq6idldl79T)
 
-Database Schema
-The application uses a PostgreSQL database with the following schema:
+## Technologies Used
 
-Department Table
-
-id: SERIAL PRIMARY KEY
-name: VARCHAR(30) UNIQUE NOT NULL
-
-
-Role Table
-
-id: SERIAL PRIMARY KEY
-title: VARCHAR(30) UNIQUE NOT NULL
-salary: DECIMAL NOT NULL
-department_id: INTEGER NOT NULL (Foreign Key)
-
-
-Employee Table
-
-id: SERIAL PRIMARY KEY
-first_name: VARCHAR(30) NOT NULL
-last_name: VARCHAR(30) NOT NULL
-role_id: INTEGER NOT NULL (Foreign Key)
-manager_id: INTEGER (Foreign Key, self-referencing)
+- Node.js
+- Inquirer.js (v8.2.4)
+- PostgreSQL
+- pg (Node-Postgres)
+- Console.table (for data display)
 
 
 
-Demo
-View the demo video
-Technologies Used
 
-Node.js
-Inquirer.js (v8.2.4)
-PostgreSQL
-pg (Node-Postgres)
-Console.table (for data display)
-
-License
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
