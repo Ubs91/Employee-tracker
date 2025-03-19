@@ -25,8 +25,66 @@ Employee Tracker is a command-line application that allows business owners to vi
 4. Create a PostgreSQL database
 5. Run the schema and seed files:
    ```bash
-   psql -U your_username -d your_database -f db/schema.sql
-   psql -U your_username -d your_database -f db/seeds.sql
+  create table deparment (
+ id serial primary key,
+ name varchar(30) unique not null
+);
+
+create table role (
+id SERIAL PRIMARY KEY,
+title VARCHAR(30) UNIQUE NOT NULL,
+salary DECIMAL NOT NULL,
+department_id INTEGER NOT NULL);
+
+
+create table employee (
+id SERIAL PRIMARY KEY,
+first_name VARCHAR(30) NOT NULL,
+last_name VARCHAR(30) NOT NULL,
+role_id INTEGER NOT NULL,
+manager_id INTEGER );
+
+ALTER TABLE deparment RENAME to department;
+
+alter table roles
+add constraint fk_department_id
+FOREIGN key (department_id) references department(id) on delete cascade;
+
+alter table employee
+add constraint fk_role_id
+foreign key (role_id) references roles(id) on delete cascade;
+
+alter table employee
+add constraint fk_employee_manager
+foreign key (manager_id) references employee(id) on delete set null;
+
+insert into department (name) values ('Marketing');
+insert into department (name) values ('Engineering');
+insert into department (name) values ('Sales'), ('Logistic');
+
+select * from department;
+
+insert into roles (title, salary, department_id) values ('Manager', 50000, 3);
+
+select * from roles;
+
+delete from department where id = 5;
+
+insert into employee (first_name, last_name, role_id, manager_id) values ('Luis', 'Ubidia', 4, NULL);
+
+insert into roles (title, salary, department_id) values ('Developer', 20000, 1),('Analyst', 10000, 4);
+
+SELECT title FROM roles;
+
+SELECT * FROM employee;
+
+SELECT first_name, last_name FROM employee;
+
+SELECT id FROM roles WHERE title = 'Developer' limit 1;
+
+SELECT id FROM employee where first_name = 'Luis' and last_name = 'Ubidia' limit 1;
+
+update employee set role_id = 4 where first_name = 'Pepe' and last_name = 'Ortiz';
    ```
 6. Configure the database connection in the connection.js file
 
